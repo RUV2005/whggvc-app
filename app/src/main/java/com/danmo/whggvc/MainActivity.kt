@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,47 +28,56 @@ import com.danmo.whggvc.ui.theme.WhggvcTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             WhggvcTheme {
-                /**
-                 * 在Surface组件中布局各个课程的视图。
-                 * Surface组件提供了统一的背景和边框处理，使得内部的布局和元素具有一致的外观。
-                 * Column组件则用于垂直排列内部的各个元素，保证了界面的垂直方向上的布局结构。
-                 */
                 Surface {
-                    Column {
-                        // 展示顶部内容
-                        Top()
-                        // 添加间隔，用于分隔顶部内容和下一个元素
-                        Spacer(modifier = Modifier.height(16.dp))
-                        // 展示课程1的视图，左右填充16dp的间距，用于提供内容区域的边距
-                        Class1(modifier = Modifier.padding(horizontal = 16.dp))
-                        // 添加间隔，用于分隔课程1和下一个元素
-                        Spacer(modifier = Modifier.height(16.dp))
-                        // 展示课程2的视图，左右填充16dp的间距
-                        Class2(modifier = Modifier.padding(horizontal = 16.dp))
-                        // 添加间隔，用于分隔课程2和下一个元素
-                        Spacer(modifier = Modifier.height(16.dp))
-                        // 展示课程3的视图，左右填充16dp的间距
-                        Class3(modifier = Modifier.padding(horizontal = 16.dp))
-                        // 添加间隔，用于分隔课程3和下一个元素
-                        Spacer(modifier = Modifier.height(16.dp))
-                        // 展示课程4的视图，左右填充16dp的间距
-                        Class4(modifier = Modifier.padding(horizontal = 16.dp))
-                        // 添加间隔，用于分隔课程4和下一个元素
-                        Spacer(modifier = Modifier.height(16.dp))
-                        // 展示课程5的视图，左右填充16dp的间距
-                        Class5(modifier = Modifier.padding(horizontal = 16.dp))
-                        // 添加间隔，用于分隔课程5和下一个元素
-                        Spacer(modifier = Modifier.height(16.dp))
-                        // 展示课程6的视图，左右填充16dp的间距
-                        Class6(modifier = Modifier.padding(horizontal = 16.dp))
+                    LazyColumn { // 使用LazyColumn替代Column
+                        item { // 每个item代表一个独立的Composable
+                            Top()
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                        item {
+                            Class1(modifier = Modifier.padding(horizontal = 16.dp))
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                        item {
+                            Class2(modifier = Modifier.padding(horizontal = 16.dp))
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                        item {
+                            Class3(modifier = Modifier.padding(horizontal = 16.dp))
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                        item {
+                            Class4(modifier = Modifier.padding(horizontal = 16.dp))
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                        item {
+                            Class5(modifier = Modifier.padding(horizontal = 16.dp))
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                        item {
+                            Class6(modifier = Modifier.padding(horizontal = 16.dp))
+                        }
                     }
                 }
             }
         }
     }
+}
+
 
 
     @Composable
@@ -108,26 +118,43 @@ class MainActivity : ComponentActivity() {
         val textStyle = TextStyle(
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontSize = 16.sp,
+            fontSize = 13.sp,
         )
 
         // 创建一个带有圆角背景的Box，用于展示欢迎文本
         Box(
             modifier = modifier
                 .fillMaxWidth() // 使Box填充父组件的全部宽度
-                .height(70.dp) // 设置Box的高度
+                .height(100.dp) // 设置Box的高度
                 .background( // 设置Box的背景颜色和形状
                     Color(0xA8FF0000),
                     shape = RoundedCornerShape(15.dp)
                 )
                 .padding(16.dp), // 在Box内部添加padding，提供内容与边界的间距
-            contentAlignment = Alignment.Center, // 设置内容在Box中的对齐方式
+            contentAlignment = Alignment.TopCenter, // 设置内容在Box中的对齐方式
         ) {
-            // 显示欢迎文本
             Text(
-                text = "欢迎来到课程页面",
+                text = "8:20-10:05",
                 color = textStyle.color, // 使用之前定义的文本颜色
                 style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(0.dp, 5.dp, 0.dp, 0.dp)
+            )
+            // 显示欢迎文本
+            Text(
+                text = "Windows服务器配置与管理",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.Center)
+            )
+            Text(
+                text = "藏龙岛 2教J512机房",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(0.dp, 20.dp, 0.dp, 0.dp)
             )
         }
     }
@@ -139,26 +166,43 @@ class MainActivity : ComponentActivity() {
         val textStyle = TextStyle(
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontSize = 16.sp,
+            fontSize = 13.sp,
         )
 
         // 创建一个带有背景色和圆角的Box组件，用于展示欢迎文本
         Box(
             modifier = modifier
-                .fillMaxWidth() // 让Box占据父组件的全部宽度
-                .height(70.dp) // 设置Box的高度
+                .fillMaxWidth() // 使Box填充父组件的全部宽度
+                .height(100.dp) // 设置Box的高度
                 .background( // 设置Box的背景颜色和形状
                     Color(0xA8F88000),
                     shape = RoundedCornerShape(15.dp)
                 )
                 .padding(16.dp), // 在Box内部添加padding，提供内容与边界的间距
-            contentAlignment = Alignment.Center, // 设置内容在Box中的对齐方式为居中
+            contentAlignment = Alignment.TopCenter, // 设置内容在Box中的对齐方式
         ) {
-            // 显示欢迎文本
             Text(
-                text = "欢迎来到课程页面",
+                text = "10:20-11:50",
                 color = textStyle.color, // 使用之前定义的文本颜色
                 style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(0.dp, 5.dp, 0.dp, 0.dp)
+            )
+            // 显示欢迎文本
+            Text(
+                text = "Axure界面设计",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.Center)
+            )
+            Text(
+                text = "藏龙岛 2教J105教室",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(0.dp, 20.dp, 0.dp, 0.dp)
             )
         }
     }
@@ -170,26 +214,44 @@ class MainActivity : ComponentActivity() {
         val textStyle = TextStyle(
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontSize = 16.sp,
+            fontSize = 13.sp,
         )
 
         // 创建一个带有圆角背景的Box，用于展示欢迎文本
         Box(
             modifier = modifier
                 .fillMaxWidth() // 使Box填充父组件的全部宽度
-                .height(70.dp) // 设置Box的高度
+                .height(100.dp) // 设置Box的高度
                 .background( // 设置Box的背景颜色和形状
                     Color(0xFFFFE500),
                     shape = RoundedCornerShape(15.dp)
                 )
                 .padding(16.dp), // 在Box内部添加padding，提供内容与边界的间距
-            contentAlignment = Alignment.Center, // 设置内容在Box中的对齐方式为居中
+            contentAlignment = Alignment.TopCenter, // 设置内容在Box中的对齐方式
         ) {
             // 显示欢迎文本
             Text(
-                text = "欢迎来到课程页面",
+                text = "13:30-15:05",
                 color = textStyle.color, // 使用之前定义的文本颜色
                 style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(0.dp, 5.dp, 0.dp, 0.dp)
+            )
+            Text(
+                text = "Java高级编程",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.Center)
+
+            )
+            Text(
+                text = "藏龙岛 2教613机房",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(0.dp, 20.dp, 0.dp, 0.dp)
             )
         }
     }
@@ -200,27 +262,43 @@ class MainActivity : ComponentActivity() {
         val textStyle = TextStyle(
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontSize = 16.sp,
+            fontSize = 13.sp,
         )
 
         // 创建一个带有圆角背景的Box，用于展示欢迎文本
         Box(
             modifier = modifier
                 .fillMaxWidth() // 使Box填充父组件的全部宽度
-                .height(70.dp) // 设置Box的高度
+                .height(100.dp) // 设置Box的高度
                 .background( // 设置Box的背景颜色和形状
                     Color(0xFFB9FF00),
                     shape = RoundedCornerShape(15.dp)
                 )
                 .padding(16.dp), // 在Box内部添加padding，提供内容与边界的间距
-            contentAlignment = Alignment.Center, // 设置内容在Box中的对齐方式为居中
+            contentAlignment = Alignment.Center, // 设置内容在Box中的对齐方式
         ) {
             // 显示欢迎文本
             Text(
-                text = "欢迎来到课程页面",
+                text = "15:20-16:55",
                 color = textStyle.color, // 使用之前定义的文本颜色
                 style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(0.dp, 5.dp, 0.dp, 0.dp)
             )
+            Text(
+                text = "图像处理",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.Center)
+            )
+            Text(
+                text = "藏龙岛 2教520机房",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
+
         }
     }
 
@@ -231,26 +309,39 @@ class MainActivity : ComponentActivity() {
         val textStyle = TextStyle(
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontSize = 16.sp,
+            fontSize = 13.sp,
         )
 
         // 创建一个带有圆角背景的Box，用于展示欢迎文本
         Box(
             modifier = modifier
                 .fillMaxWidth() // 使Box填充父组件的全部宽度
-                .height(70.dp) // 设置Box的高度
+                .height(100.dp) // 设置Box的高度
                 .background( // 设置Box的背景颜色和形状
                     Color(0xFF00FF09),
                     shape = RoundedCornerShape(15.dp)
                 )
                 .padding(16.dp), // 在Box内部添加padding，提供内容与边界的间距
-            contentAlignment = Alignment.Center, // 设置内容在Box中的对齐方式为居中
+            contentAlignment = Alignment.TopCenter, // 设置内容在Box中的对齐方式
         ) {
-            // 显示欢迎文本
             Text(
-                text = "欢迎来到课程页面",
+                text = "18:05-19:45",
                 color = textStyle.color, // 使用之前定义的文本颜色
                 style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.TopCenter)
+            )
+            // 显示欢迎文本
+            Text(
+                text = "数据库原理及应用",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.Center)
+            )
+            Text(
+                text = "藏龙岛 2教J508机房",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.BottomCenter)
             )
         }
     }
@@ -262,26 +353,40 @@ class MainActivity : ComponentActivity() {
         val textStyle = TextStyle(
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontSize = 16.sp,
+            fontSize = 13.sp,
         )
 
         // 创建一个带有圆角背景的Box，用于展示欢迎文本
         Box(
             modifier = modifier
                 .fillMaxWidth() // 使Box填充父组件的全部宽度
-                .height(70.dp) // 设置Box的高度
+                .height(100.dp) // 设置Box的高度
                 .background( // 设置Box的背景颜色和形状
                     Color(0xFF00FFB9),
                     shape = RoundedCornerShape(15.dp)
                 )
                 .padding(16.dp), // 在Box内部添加padding，提供内容与边界的间距
-            contentAlignment = Alignment.Center, // 设置内容在Box中的对齐方式为居中
+            contentAlignment = Alignment.TopCenter, // 设置内容在Box中的对齐方式
         ) {
-            // 显示欢迎文本
             Text(
-                text = "欢迎来到课程页面",
+                text = "15:20-16:55",
                 color = textStyle.color, // 使用之前定义的文本颜色
                 style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.TopCenter)
+            )
+            // 显示欢迎文本
+            Text(
+                text = "Windows服务器配置与管理",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.Center)
+
+            )
+            Text(
+                text = "藏龙岛 2教J106教室",
+                color = textStyle.color, // 使用之前定义的文本颜色
+                style = textStyle, // 使用之前定义的文本样式
+                modifier = Modifier.align(Alignment.BottomCenter)
             )
 
         }
@@ -298,7 +403,7 @@ class MainActivity : ComponentActivity() {
                 // 显示顶部组件的预览
                 Top()
                 // 添加一个间隔，用于区分顶部组件和下一个组件
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 // 显示课程1的组件预览，并为其添加左右16dp的内边距
                 Class1(modifier = Modifier.padding(horizontal = 16.dp))
                 // 添加一个间隔，用于区分课程1和下一个组件
@@ -326,4 +431,3 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
